@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class FrmJuego extends JFrame {
 
@@ -61,5 +62,21 @@ public class FrmJuego extends JFrame {
         JButton btnLanzar = new JButton("Lanzar");
         btnLanzar.setBounds(10, 55 + imgDado.getIconHeight(), 100, 25);
         add(btnLanzar);
+
+        // eventos
+        btnIniciar.addActionListener(e -> {
+            iniciarLanzamientos();
+        });
+        btnLanzar.addActionListener(e -> {
+            lanzar();
+        });
+    }
+
+    private void iniciarLanzamientos() {
+        JOptionPane.showMessageDialog(null, "Hizo clic en INICIAR");
+    }
+
+    private void lanzar() {
+        JOptionPane.showMessageDialog(null, "Hizo clic en LANZAR");
     }
 }
