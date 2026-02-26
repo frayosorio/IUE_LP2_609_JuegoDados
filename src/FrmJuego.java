@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -8,6 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class FrmJuego extends JFrame {
+
+    private Dado dado1 = new Dado();
+    private Dado dado2 = new Dado();
+    private Random r = new Random();
+    private int lanzamientos, cenas;
+
+    private JLabel lblDado2, lblDado1, lblLanzamientos, lblCenas;
 
     // método constructor
     public FrmJuego() {
@@ -19,11 +27,11 @@ public class FrmJuego extends JFrame {
         String archivoImagen = "imagenes/2.jpg";
         ImageIcon imgDado = new ImageIcon(getClass().getResource(archivoImagen));
 
-        JLabel lblDado1 = new JLabel(imgDado);
+        lblDado1 = new JLabel(imgDado);
         lblDado1.setBounds(10, 10, imgDado.getIconWidth(), imgDado.getIconHeight());
         add(lblDado1);
 
-        JLabel lblDado2 = new JLabel(imgDado);
+        lblDado2 = new JLabel(imgDado);
         lblDado2.setBounds(20 + imgDado.getIconWidth(), 10, imgDado.getIconWidth(), imgDado.getIconHeight());
         add(lblDado2);
 
@@ -32,7 +40,7 @@ public class FrmJuego extends JFrame {
         lblTituloLanzamientos.setHorizontalAlignment(JLabel.CENTER);
         add(lblTituloLanzamientos);
 
-        JLabel lblLanzamientos = new JLabel("0");
+        lblLanzamientos = new JLabel("0");
         lblLanzamientos.setBounds(30 + 2 * imgDado.getIconWidth(), 45, 100, 100);
         lblLanzamientos.setFont(new Font("Tahoma", Font.BOLD, 72));
         lblLanzamientos.setBackground(new Color(0, 0, 0));
@@ -46,7 +54,7 @@ public class FrmJuego extends JFrame {
         lblTituloCenas.setHorizontalAlignment(JLabel.CENTER);
         add(lblTituloCenas);
 
-        JLabel lblCenas = new JLabel("0");
+        lblCenas = new JLabel("0");
         lblCenas.setBounds(140 + 2 * imgDado.getIconWidth(), 45, 100, 100);
         lblCenas.setFont(new Font("Tahoma", Font.BOLD, 72));
         lblCenas.setBackground(new Color(0, 0, 0));
@@ -77,6 +85,13 @@ public class FrmJuego extends JFrame {
     }
 
     private void lanzar() {
-        JOptionPane.showMessageDialog(null, "Hizo clic en LANZAR");
+        dado1.lanzar(r);
+        dado1.mostrar(lblDado2);
+        dado2.lanzar(r);
+        dado2.mostrar(lblDado1);
+
+        lanzamientos++;
+        lblLanzamientos.setText(String.valueOf(lanzamientos));
+
     }
 }
